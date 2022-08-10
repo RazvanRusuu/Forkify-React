@@ -1,3 +1,4 @@
-import Header from "./Header/Header";
+import Header from "./Header";
+import SearchForm from "./SearchForm";
 
-export { Header };
+export { Header, SearchForm };

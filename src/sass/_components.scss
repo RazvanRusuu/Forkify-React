@@ -1,0 +1,123 @@
+// ===========HEADER===========
+
+.header {
+  &__logo-box {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+
+    &-icon {
+      position: relative;
+
+      &::before {
+        content: "";
+        background-color: #fff;
+        height: 100%;
+        width: 100%;
+        display: block;
+        padding: 3rem;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+
+        z-index: 1;
+      }
+    }
+  }
+
+  &__logo-text {
+    font-family: "Inspiration", cursive;
+    font-size: 4rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+  }
+
+  &__logo {
+    width: 3rem;
+    height: 3rem;
+    fill: var(--color-primary);
+    position: relative;
+    z-index: 9;
+  }
+}
+
+.search {
+  flex: 0 0 40%;
+  color: var(--color-grey-dark-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__input {
+    font-family: inherit;
+    font-size: 1.4rem;
+    background: none;
+    border: none;
+    color: currentColor;
+    width: 90%;
+    padding: 1.5rem 3rem;
+    background-color: var(--color-grey-light-2);
+    margin-right: -3.5rem;
+    border-radius: 50px;
+    transition: all 0.2s;
+
+    &:focus {
+      outline: none;
+      width: 100%;
+
+      box-shadow: var(--shadow-light);
+    }
+
+    &::placeholder {
+      font-size: 1.6rem;
+      font-family: inherit;
+    }
+  }
+
+  &__icon {
+    width: 2rem;
+    height: 2rem;
+    fill: var(--color-grey-dark-2);
+  }
+}
+
+.header__recipe-box {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+}
+.header__recipe-icon {
+  width: 3rem;
+  height: 3rem;
+  fill: #fff;
+}
+.header__link:visited,
+.header__link:link {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  padding: 0 5rem;
+  position: relative;
+
+  & span {
+    position: absolute;
+    top: 20%;
+    right: 0;
+    font-size: 1rem;
+    background-color: var(--color-grey-light-2);
+    padding: 3px;
+    font-weight: 500;
+    border-radius: 50px;
+    color: var(--color-primary);
+    text-transform: uppercase;
+
+    z-index: 99;
+  }
+}
+
+.header__link:hover,
+.header__link:active {
+  background-color: var(--color-primary-light);
+}
