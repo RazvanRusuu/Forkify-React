@@ -17,6 +17,7 @@
   --shadow-light: 0 2rem 5rem rgba(0, 0, 0, 0.06);
 
   --line: 1px solid var(--color-grey-light-2);
+  --transition: all 0.3s;
 }
 
 *,
@@ -30,6 +31,10 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+
+  @media screen and (max-width: 56.25em) {
+    font-size: 50%;
+  }
 }
 
 body {

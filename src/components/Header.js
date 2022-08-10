@@ -23,11 +23,11 @@ const Header = () => {
           <div className="header__recipe-box">
             <Link to={"/add-recipe"} className="link header__link">
               <Bookmark className="header__recipe-icon" />
-              <span>Add recipe</span>
+              <span>Bookmark</span>
             </Link>
             <Link to={"/bookmark"} className="link header__link">
               <Pencil className="header__recipe-icon" />
-              <span>Bookmark</span>
+              <span>Add Recipe</span>
             </Link>
           </div>
         </header>
