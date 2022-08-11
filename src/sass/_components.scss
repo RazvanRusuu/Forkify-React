@@ -59,6 +59,7 @@
   @media screen and (max-width: 37.5em) {
     order: 1;
     flex: 1 1 100%;
+    background-color: var(--color-grey-light-2);
   }
 
   &__input {
@@ -74,16 +75,15 @@
     border-radius: 50px;
     transition: all 0.2s;
 
-    @media screen and (max-width: 37.5em) {
-      width: 100%;
-      border-radius: 5px;
-    }
-
     &:focus {
       outline: none;
       width: 100%;
       box-shadow: var(--shadow-light);
       background-color: var(--color-grey-light-1);
+
+      @media screen and (max-width: 37.5em) {
+        background-color: var(--color-grey-light-2);
+      }
     }
 
     &::placeholder {
@@ -103,6 +103,10 @@
   align-self: stretch;
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 37.5em) {
+    margin-right: 2rem;
+  }
 }
 .header__recipe-icon {
   width: 3rem;
@@ -175,32 +179,61 @@
     background-color: var(--color-grey-light-3);
   }
 
+  &__figure {
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+
+    &::before {
+      content: "";
+      display: block;
+      width: 100%;
+      padding-bottom: 100%;
+      position: absolute;
+      top: 0;
+      height: 0;
+
+      background-image: linear-gradient(
+        to right bottom,
+        var(--color-primary),
+        var(--color-primary-light)
+      );
+
+      opacity: 0.3;
+    }
+  }
   &__img {
-    width: 12rem;
+    width: 8rem;
     aspect-ratio: 1/1;
     object-fit: cover;
     display: block;
+    transition: var(--transition);
+  }
 
-    clip-path: ellipse(90px 90px at 20% 20%);
+  &__title-box {
+    padding: 1.3rem 1rem;
   }
 
   &__title,
   &__publisher {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
     text-transform: uppercase;
   }
 
   &__title {
+    font-weight: 400;
     font-size: 1.4rem;
-    padding: 1.3rem 1rem;
     line-height: 1.6;
+    text-overflow: ellipsis;
+    max-width: 20rem;
+    white-space: nowrap;
+    overflow: hidden;
     color: var(--color-primary);
   }
 
   &__publisher {
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: 600;
+    color: var(--color-grey-dark-3);
   }
 }
 
@@ -211,7 +244,7 @@
   justify-content: space-between;
 }
 
-.btn-page {
+.btn__page {
   padding: 0.5rem 1.5rem;
   background-color: var(--color-grey-light-3);
   border-radius: 50px;
@@ -221,6 +254,14 @@
 
   &:hover {
     background-color: var(--color-grey-light-4);
+  }
+
+  &-right {
+    margin-left: auto;
+  }
+
+  &-left {
+    margin-right: auto;
   }
 }
 

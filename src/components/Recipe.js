@@ -5,7 +5,7 @@ const Recipe = (props) => {
   return (
     <li className="preview">
       <Link to={`/recipe/${props.id}`} className=" link preview__link">
-        <figure className="figure">
+        <figure className="preview__figure">
           <img src={props.url} alt={props.title} className="preview__img" />
         </figure>
         <div className="preview__title-box">

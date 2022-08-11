@@ -14,7 +14,7 @@
     height: 12rem;
     flex-wrap: wrap;
     justify-content: space-between;
-    padding: 0 2rem;
+    padding: 0;
   }
 }
 
@@ -28,10 +28,11 @@
   }
 }
 .container__recipes {
-  grid-template-columns: 40rem 1fr;
+  grid-template-columns: 35rem 1fr;
   background-color: var(--color-grey-light-3);
   border-radius: 5px;
   box-shadow: var(--shadow-dark);
+  min-height: 100rem;
 }
 
 .grid {
