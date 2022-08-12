@@ -9,8 +9,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/recipe/:recipeId" element={<Home />} />
         <Route path="/bookmark" element={<Bookmark />} />
-        <Route path="/recipe/:recipeId" element={<SingleRecipe />} />
         <Route path="/add-recipe" element={<AddRecipe />} />
         <Route path="*" element={<NoPage />} />
       </Routes>

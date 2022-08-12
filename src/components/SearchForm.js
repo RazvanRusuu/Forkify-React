@@ -1,18 +1,21 @@
 import React, { useRef } from "react";
+import { useSearchParams } from "react-router-dom";
+
 import { ReactComponent as SearchIcon } from "../assets/SVG/search.svg";
 import { useRecipeContext } from "../store/context-recipe";
 
 const SearchForm = () => {
-  const { onChangeHandler } = useRecipeContext();
-
+  const { onChangeHandler, changedSearchedState, recipe } = useRecipeContext();
+  const [searchParams, setSearchParams] = useSearchParams();
   const inputRef = useRef();
-
-  const changeHandler = (e) => {
-    onChangeHandler(e.target.value);
-  };
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+    // avoid rendering spinner for first mount
+    changedSearchedState();
+    setSearchParams(`search=${inputRef.current.value}`);
+    onChangeHandler(inputRef.current.value);
+
     inputRef.current.value = "";
   };
 
@@ -23,9 +26,8 @@ const SearchForm = () => {
         type="text"
         className="search__input"
         placeholder="Search recipe..."
-        onChange={changeHandler}
       />
-      <button type="button" className="btn btn-search">
+      <button type="submit" className="btn btn-search">
         <SearchIcon className="search__icon" />
       </button>
     </form>

@@ -1,4 +1,7 @@
 const recipeReducer = (state, action) => {
+  if (action.type === "FIRST_SEARCH") {
+    return { ...state, searched: true };
+  }
   if (action.type === "SEARCH") {
     return { ...state, query: action.payload };
   }

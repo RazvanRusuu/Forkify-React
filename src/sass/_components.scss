@@ -155,6 +155,8 @@
   background-color: var(--color-grey-light-1);
   border-radius: 5px;
   padding: 3rem 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .recipe__list {
@@ -272,11 +274,12 @@
 }
 
 .spinner {
-  width: 15rem;
-  height: 15rem;
+  width: 10rem;
+  height: 10rem;
+  fill: var(--color-primary);
 }
 
 .error {
-  font-size: 5rem;
-  color: #fff;
+  font-size: 1.6rem;
+  color: var(--color-primary);
 }

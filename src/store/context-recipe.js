@@ -1,18 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 
 import { useContext, useReducer } from "react";
 import reducer from "../reducer/reducer";
 import { API_URL } from "../config";
 
 const initial_state = {
+  searched: false,
   sidebar_open: false,
   isLoading: false,
   singleRecipeLoading: false,
   recipes: [],
   error: { msg: "", status: false },
   singleRecipeError: { msg: "", status: false },
-  recipe: {},
-  query: "pizza",
+  recipe: null,
+  query: "",
   bookmark: [],
 };
 
@@ -25,6 +26,7 @@ const RecipeProvider = (props) => {
   const { query } = state;
 
   const loadRecipes = async (url) => {
+    if (!query) return;
     dispatch({ type: "LOAD_RECIPES" });
 
     try {
@@ -33,13 +35,35 @@ const RecipeProvider = (props) => {
       if (!response.ok) throw new Error("Something went wrong!");
 
       const data = await response.json();
-
       if (data.results === 0) throw new Error("No recipe found! Try again");
 
       dispatch({ type: "RECIPES_SUCCESS", payload: data.data.recipes });
     } catch (err) {
       dispatch({ type: "ERROR", payload: err.message });
     }
+  };
+
+  const fetchSingleRecipe = async (id) => {
+    dispatch({ type: "LOAD_SINGLE_RECIPE" });
+
+    try {
+      const response = await fetch(`${API_URL}get?rId=${id}`);
+
+      if (!response.ok) throw new Error("Something went wrong!");
+
+      const data = await response.json();
+      console.log(data);
+      if (data.results === 0) throw new Error("No recipe found! Try again");
+
+      dispatch({ type: "SINGLE_RECIPE_SUCCESS", payload: data.data.recipes });
+    } catch (err) {
+      dispatch({ type: "SINGLE_RECIPE_ERROR", payload: err.message });
+    }
+  };
+
+  // avoid rendering spinner for first mount
+  const changedSearchedState = () => {
+    dispatch({ type: "FIRST_SEARCH" });
   };
 
   const onChangeHandler = (query) => {
@@ -51,7 +75,14 @@ const RecipeProvider = (props) => {
   }, [query]);
 
   return (
-    <RecipeContext.Provider value={{ ...state, onChangeHandler }}>
+    <RecipeContext.Provider
+      value={{
+        ...state,
+        onChangeHandler,
+        changedSearchedState,
+        fetchSingleRecipe,
+      }}
+    >
       {props.children}
     </RecipeContext.Provider>
   );

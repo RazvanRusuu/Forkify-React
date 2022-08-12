@@ -12,9 +12,9 @@ const Header = () => {
       <div className="container">
         <header className="header">
           <div className="header__logo-box">
-            <div className="header__logo-box-icon">
+            <Link to={"/"} className="header__logo-box-icon">
               <Logo className="header__logo" />
-            </div>
+            </Link>
             <span className="header__logo-text">Forkify</span>
           </div>
 

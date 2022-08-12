@@ -3,7 +3,6 @@ export const RES_PER_PAGE = 10;
 
 export const paginate = (recipes, page) => {
   const numberOfPages = Math.ceil(recipes.length / RES_PER_PAGE);
-  console.log(recipes);
   const recipesPerPage = recipes.slice(
     (page - 1) * RES_PER_PAGE,
     RES_PER_PAGE * page
