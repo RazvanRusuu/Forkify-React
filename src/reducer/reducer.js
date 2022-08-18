@@ -50,6 +50,30 @@ const recipeReducer = (state, action) => {
       singleRecipeError: { msg: action.payload, status: true },
     };
   }
+
+  if (action.type === "HANDLE_SERVINGS") {
+    const {
+      recipe: { servings },
+    } = state;
+    const newServings = state.recipe.ingredients.map((ing) => {
+      const quantityPerServing = Number(ing.quantity / servings);
+
+      const newQuantity =
+        action.payload === "decrease"
+          ? ing.quantity - quantityPerServing
+          : ing.quantity + quantityPerServing;
+      return { ...ing, quantity: newQuantity };
+    });
+
+    return {
+      ...state,
+      recipe: {
+        ...state.recipe,
+        ingredients: newServings,
+        servings: action.payload === "decrease" ? servings - 1 : servings + 1,
+      },
+    };
+  }
   return state;
 };
 

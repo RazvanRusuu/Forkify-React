@@ -5,6 +5,7 @@ import Loading from "./Loading";
 import Error from "./Error";
 import RecipesList from "./RecipesList";
 import RecipeDetails from "./RecipeDetails";
+import RecipeIngredients from "./RecipeIngredients";
 
 export {
   Header,
@@ -14,4 +15,5 @@ export {
   Error,
   RecipesList,
   RecipeDetails,
+  RecipeIngredients,
 };

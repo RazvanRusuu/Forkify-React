@@ -58,7 +58,7 @@ const RecipesList = () => {
 
   return (
     <>
-      <ul className="recipe__list">
+      <ul className="preview__list">
         {recipesPerPage.map((recipe) => {
           const { id, title, image_url: url, publisher } = recipe;
           const newRecipe = { id, title, url, publisher };

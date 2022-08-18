@@ -68,6 +68,10 @@ const RecipeProvider = (props) => {
     dispatch({ type: "SEARCH", payload: query });
   };
 
+  const handleServings = (type) => {
+    dispatch({ type: "HANDLE_SERVINGS", payload: type });
+  };
+
   useEffect(() => {
     loadRecipes(API_URL);
   }, [query]);
@@ -79,6 +83,7 @@ const RecipeProvider = (props) => {
         onChangeHandler,
         changedSearchedState,
         fetchSingleRecipe,
+        handleServings,
       }}
     >
       {props.children}

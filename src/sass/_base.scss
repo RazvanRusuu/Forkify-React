@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Inspiration&family=Roboto:ital,wght@0,400;0,500;0,700;1,500&display=swap");
 :root {
-  --color-primary: #eb2f64;
+  --color-primary: #eb2f64e3;
   --color-primary-light: #ff3366;
   --color-primary-dark: #ba265d;
 
@@ -63,4 +63,12 @@ button {
 .link:link {
   text-decoration: none;
   color: currentColor;
+}
+
+.heading-tertiary {
+  font-size: 2.2rem;
+  text-align: center;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  margin-bottom: 4rem;
 }
