@@ -5,7 +5,7 @@ import { ReactComponent as SearchIcon } from "../assets/SVG/search.svg";
 import { useRecipeContext } from "../store/context-recipe";
 
 const SearchForm = () => {
-  const { onChangeHandler, changedSearchedState, recipe } = useRecipeContext();
+  const { onChangeHandler, changedSearchedState } = useRecipeContext();
   const [searchParams, setSearchParams] = useSearchParams();
   const inputRef = useRef();
 

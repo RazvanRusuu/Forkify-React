@@ -47,15 +47,13 @@ const RecipeProvider = (props) => {
     dispatch({ type: "LOAD_SINGLE_RECIPE" });
 
     try {
-      const response = await fetch(`${API_URL}get?rId=${id}`);
+      const response = await fetch(`${API_URL}/${id}`);
 
       if (!response.ok) throw new Error("Something went wrong!");
 
       const data = await response.json();
-      console.log(data);
-      if (data.results === 0) throw new Error("No recipe found! Try again");
 
-      dispatch({ type: "SINGLE_RECIPE_SUCCESS", payload: data.data.recipes });
+      dispatch({ type: "SINGLE_RECIPE_SUCCESS", payload: data.data.recipe });
     } catch (err) {
       dispatch({ type: "SINGLE_RECIPE_ERROR", payload: err.message });
     }

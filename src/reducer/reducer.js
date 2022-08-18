@@ -26,6 +26,30 @@ const recipeReducer = (state, action) => {
       error: { msg: action.payload, status: true },
     };
   }
+  if (action.type === "LOAD_SINGLE_RECIPE") {
+    return {
+      ...state,
+      singleRecipeLoading: true,
+      singleRecipeError: { msg: "", status: false },
+    };
+  }
+
+  if (action.type === "SINGLE_RECIPE_SUCCESS") {
+    return {
+      ...state,
+      singleRecipeLoading: false,
+      singleRecipeError: { msg: "", status: false },
+      recipe: { ...action.payload },
+    };
+  }
+
+  if (action.type === "SINGLE_RECIPE_ERROR") {
+    return {
+      ...state,
+      singleRecipeLoading: false,
+      singleRecipeError: { msg: action.payload, status: true },
+    };
+  }
   return state;
 };
 

@@ -21,25 +21,20 @@ const RecipesList = () => {
 
   const { recipesPerPage, numberOfPages: pages } = paginate(recipes, page);
 
-  const pageHandler = (e) => {
-    const btnType = e.target.name;
-    setPage((prevPage) => {
-      if (btnType === "increase") {
-        return prevPage + 1;
-      }
-      if (btnType === "decrease") {
-        return prevPage - 1;
-      }
-      return prevPage;
-    });
+  const prevPageHandler = () => {
+    setPage((prevPage) => prevPage - 1);
+  };
+
+  const nextPageHandler = () => {
+    setPage((prevPage) => prevPage + 1);
   };
 
   const buttons = (
     <>
-      <button name="decrease" className="btn btn__page" onClick={pageHandler}>
+      <button className="btn btn__page" onClick={prevPageHandler}>
         Page {page - 1}
       </button>
-      <button name="increase" className="btn btn__page" onClick={pageHandler}>
+      <button className="btn btn__page" onClick={nextPageHandler}>
         Page {page + 1}
       </button>
     </>
@@ -73,19 +68,14 @@ const RecipesList = () => {
       <div className="pagination">
         {page === 1 && pages > 1 && (
           <button
-            name="increase"
             className="btn btn__page btn__page-right"
-            onClick={pageHandler}
+            onClick={nextPageHandler}
           >
             Page {page + 1}
           </button>
         )}
         {page === pages && (
-          <button
-            name="decrease"
-            className="btn btn__page"
-            onClick={pageHandler}
-          >
+          <button className="btn btn__page" onClick={prevPageHandler}>
             Page {page - 1}
           </button>
         )}
