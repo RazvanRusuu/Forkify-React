@@ -4,7 +4,8 @@ import { ReactComponent as Clock } from "../assets/SVG/clock.svg";
 import { ReactComponent as Man } from "../assets/SVG/man.svg";
 import { ReactComponent as Minus } from "../assets/SVG/minus.svg";
 import { ReactComponent as Plus } from "../assets/SVG/plus.svg";
-import { ReactComponent as Bookmark } from "../assets/SVG/bookmarks.svg";
+import { ReactComponent as Bookmark } from "../assets/SVG/bookmark-empty.svg";
+import { ReactComponent as BookmarkFill } from "../assets/SVG/bookmarks.svg";
 
 import { useRecipeContext } from "../store/context-recipe";
 import Loading from "./Loading";
@@ -18,9 +19,12 @@ const RecipeDetails = () => {
     searched,
     singleRecipeError: { msg, status },
     handleServings,
+    recipe,
+    addToBookmarksHandler,
+    bookmark,
   } = useRecipeContext();
   const { recipeId } = useParams();
-  const { recipe } = useRecipeContext();
+  const bookmarkedRecipe = bookmark.find((recipe) => recipe.id === recipeId);
 
   const increaseServingsHandler = () => {
     handleServings("increase");
@@ -31,12 +35,16 @@ const RecipeDetails = () => {
     handleServings("decrease");
   };
 
+  const addToBookmarks = () => {
+    addToBookmarksHandler(recipe);
+  };
+
   useEffect(() => {
     if (!recipeId) return;
     fetchSingleRecipe(recipeId);
   }, [recipeId]);
 
-  if (singleRecipeLoading && !recipe) {
+  if (singleRecipeLoading) {
     return <Loading />;
   }
 
@@ -47,6 +55,7 @@ const RecipeDetails = () => {
   if (status) {
     return <Error msg="Could not find that recipe! Try again!" />;
   }
+  if (!recipe) return;
 
   return (
     <section className="recipe">
@@ -78,8 +87,12 @@ const RecipeDetails = () => {
         </div>
       </div>
 
-      <button className="btn btn-bookmark">
-        <Bookmark className="btn__icon" />
+      <button className="btn btn-bookmark" onClick={addToBookmarks}>
+        {bookmarkedRecipe ? (
+          <BookmarkFill className="btn__icon" />
+        ) : (
+          <Bookmark className="btn__icon" />
+        )}
       </button>
 
       <RecipeIngredients ingredients={recipe.ingredients} />

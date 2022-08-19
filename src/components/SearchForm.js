@@ -15,7 +15,6 @@ const SearchForm = () => {
     changedSearchedState();
     setSearchParams(`search=${inputRef.current.value}`);
     onChangeHandler(inputRef.current.value);
-
     inputRef.current.value = "";
   };
 

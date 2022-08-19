@@ -181,6 +181,10 @@
     background-color: var(--color-grey-light-3);
   }
 
+  .active {
+    background-color: var(--color-grey-light-3);
+  }
+
   &__figure {
     position: relative;
     overflow: hidden;
@@ -378,9 +382,9 @@
   }
 
   .btn-bookmark .btn__icon {
-    fill: #fff;
-    width: 2rem;
-    height: 2rem;
+    fill: rgb(255, 255, 255);
+    width: 2.4rem;
+    height: 2.4rem;
   }
 }
 

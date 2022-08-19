@@ -74,6 +74,19 @@ const recipeReducer = (state, action) => {
       },
     };
   }
+
+  if (action.type === "ADD_BOOKMARK") {
+    const { id } = action.payload;
+    const targetRecipe = state.bookmark.find((recipe) => recipe.id === id);
+    console.log(targetRecipe);
+
+    if (!targetRecipe) {
+      return { ...state, bookmark: [...state.bookmark, action.payload] };
+    } else {
+      const newBookmarks = state.bookmark.filter((recipe) => recipe.id !== id);
+      return { ...state, bookmark: newBookmarks };
+    }
+  }
   return state;
 };
 

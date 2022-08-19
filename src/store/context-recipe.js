@@ -72,6 +72,10 @@ const RecipeProvider = (props) => {
     dispatch({ type: "HANDLE_SERVINGS", payload: type });
   };
 
+  const addToBookmarksHandler = (recipe) => {
+    dispatch({ type: "ADD_BOOKMARK", payload: recipe });
+  };
+
   useEffect(() => {
     loadRecipes(API_URL);
   }, [query]);
@@ -84,6 +88,7 @@ const RecipeProvider = (props) => {
         changedSearchedState,
         fetchSingleRecipe,
         handleServings,
+        addToBookmarksHandler,
       }}
     >
       {props.children}
